@@ -38,6 +38,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
 	post = models.ForeignKey(Post, related_name='comments')
+	reply_to = models.ForeignKey('self', related_name='replies',null=True, blank=True)
 	name = models.CharField(max_length=80)
 	email = models.EmailField()
 	body = models.TextField()
