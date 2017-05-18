@@ -6,4 +6,12 @@
 Published {{ post.publish }} by {{ post.author }}
 </p>
 {{ post.body|linebreaks }}
+<br/><br/><br/>
+<h3>comments</h3>
+{% with comments.count as total_comments %}
+<h2>
+{{ total_comments }} comment{{ total_comments|pluralize }}
+</h2>
+{% endwith %}
+
 {% endblock %}
