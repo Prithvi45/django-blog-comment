@@ -1,0 +1,4 @@
+{{ comment.message }}
+{% for comment in comment.get_children %}
+    {% include comment.html %}
+{% endfor %}

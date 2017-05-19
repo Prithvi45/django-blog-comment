@@ -8,6 +8,9 @@ Published {{ post.publish }} by {{ post.author }}
 {{ post.body|linebreaks }}
 <br/><br/><br/>
 
+
+
+
 {% for comment in comments %}
 <div class="comment">
 <p class="info">
@@ -16,6 +19,15 @@ Comment {{ forloop.counter }} by {{ comment.name }}
 </p>
 {{ comment.body|linebreaks }}
 </div>
+
+{% if replies %}
+    <ul><hr>
+        {% for reply in replies %}
+        {{ reply }}
+        {% endfor %}
+    </ul><hr>
+{% endif %}</li>
+
 {% empty %}
 <p>There are no comments yet.</p>
 {% endfor %}
@@ -24,6 +36,9 @@ Comment {{ forloop.counter }} by {{ comment.name }}
 {% if new_comment %}
 <h2>Your comment has been added.</h2>
 {% else %}
+
+<hr>
+<br/><br/><br/><br/>
 <h2>Add a new comment</h2>
 <form action="." method="post">
 {{ comment_form.as_p }}

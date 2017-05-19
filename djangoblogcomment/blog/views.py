@@ -3,6 +3,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from .forms import  CommentForm
+from django import template
+from django.template.loader import get_template 
 
 def post_list(request):
 	posts = Post.published.all()
@@ -21,8 +23,11 @@ def post_list(request):
 def post_detail(request, year, month, day, post):
 	post = get_object_or_404(Post, slug=post,status='published',publish__year=year,publish__month=month,publish__day=day)
 	comments = post.comments.filter(active=True)
-	rpy = Comment.objects.filter(active=True)
-	print rpy
+	for comment in comments:
+		reply = comment.replies.all()
+		print reply
+
+	# rpy = Comment.objects.filter(active=True)
 	if request.method == 'POST':
 		comment_form = CommentForm(data=request.POST)
 		if comment_form.is_valid():
