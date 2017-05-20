@@ -19,14 +19,12 @@ Comment {{ forloop.counter }} by {{ comment.name }}
 </p>
 {{ comment.body|linebreaks }}
 </div>
+{% for reply in comment.replies.all %}
+&nbsp;&nbsp;&nbsp;&nbsp;{{reply.name}}:- {{ reply.body }}
+{% endfor%}
 
-{% if replies %}
-    <ul><hr>
-        {% for reply in replies %}
-        {{ reply }}
-        {% endfor %}
-    </ul><hr>
-{% endif %}</li>
+
+
 
 {% empty %}
 <p>There are no comments yet.</p>
