@@ -9,8 +9,6 @@ Published {{ post.publish }} by {{ post.author }}
 <br/><br/><br/>
 
 
-
-
 {% for comment in comments %}
 <div class="comment">
 <p class="info">
@@ -22,8 +20,6 @@ Comment {{ forloop.counter }} by {{ comment.name }}
 {% for reply in comment.replies.all %}
 &nbsp;&nbsp;&nbsp;&nbsp;{{reply.name}}:- {{ reply.body }}
 {% endfor%}
-
-
 
 
 {% empty %}
